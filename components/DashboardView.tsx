@@ -50,6 +50,7 @@ const DashboardView: React.FC<DashboardViewProps> = ({ dateRange }) => {
   const handleGenerateInsights = async () => {
     setIsGenerating(true);
     setInsights(null);
+    // Now calls the local mock service
     const result = await generateDashboardInsights();
     setInsights(result);
     setIsGenerating(false);
@@ -59,7 +60,7 @@ const DashboardView: React.FC<DashboardViewProps> = ({ dateRange }) => {
     <div className={`p-6 transition-all duration-300 ${isLoading ? 'opacity-30 translate-y-2' : 'opacity-100 translate-y-0'}`}>
       <div className="max-w-[1600px] mx-auto space-y-6">
         
-        {/* AI Insights Bar */}
+        {/* AI Insights Bar - UI preserved but powered by local logic */}
         <div className="relative overflow-hidden p-6 rounded-2xl bg-gradient-to-r from-primary/20 to-purple-500/10 border border-white/10 group transition-all">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
@@ -67,8 +68,8 @@ const DashboardView: React.FC<DashboardViewProps> = ({ dateRange }) => {
                 <span className="material-symbols-outlined text-2xl animate-pulse">auto_awesome</span>
               </div>
               <div>
-                <h2 className="text-lg font-bold">AI Business Intelligence</h2>
-                <p className="text-sm text-text-secondary">Generating insights for <span className="text-white font-bold">{dateRange}</span></p>
+                <h2 className="text-lg font-bold">Local Intelligence Engine</h2>
+                <p className="text-sm text-text-secondary">Simulated analysis for <span className="text-white font-bold">{dateRange}</span></p>
               </div>
             </div>
             <button 
