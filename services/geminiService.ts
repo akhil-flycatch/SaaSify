@@ -1,19 +1,42 @@
-import { KPI_STATS, REVENUE_CHART_DATA } from "../constants.ts";
+import { GoogleGenAI } from "@google/genai";
+import { KPI_STATS } from "../constants.ts";
 
 /**
- * Simulates an AI analysis of dashboard data locally.
- * This allows the app to run without an external API key.
+ * Generates real AI insights using Gemini based on current dashboard metrics.
  */
 export const generateDashboardInsights = async () => {
-  // Simulate processing delay for a more realistic "AI" feel
-  await new Promise(resolve => setTimeout(resolve, 1200));
-  
-  const stats = KPI_STATS;
-  const topMetric = stats.reduce((prev, current) => (prev.change > current.change) ? prev : current);
+  try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+    
+    const statsSummary = KPI_STATS.map(s => 
+      `${s.label}: ${s.value} (${s.change}% ${s.trend === 'up' ? 'increase' : 'decrease'})`
+    ).join(', ');
 
-  return `
-• Strategic Growth: The ${topMetric.label} is currently leading performance with a ${topMetric.change}% increase. This suggests strong product-market fit in recent feature releases.
-• Customer Retention: Your churn rate has stabilized at 2.1%. Focus on the "Pro Plan" cohort where engagement is currently 15% higher than average.
-• Revenue Forecast: Based on the current trend of $124,500 total revenue, we project a 5-8% increase in the next quarter if current acquisition costs remain stable.
-  `.trim();
+    const prompt = `
+      You are an expert business analyst for a SaaS enterprise. 
+      Analyze the following real-time performance metrics and provide 3 concise, high-impact strategic insights.
+      
+      Current Metrics: ${statsSummary}
+      
+      Requirements:
+      - Use professional, data-driven language.
+      - Focus on one growth opportunity, one retention/churn observation, and one forward-looking projection.
+      - Format as a bulleted list.
+      - Do not include conversational filler.
+    `;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: [{ parts: [{ text: prompt }] }],
+      config: {
+        temperature: 0.7,
+        topP: 0.95,
+      }
+    });
+
+    return response.text || "Insight generation returned an empty result. Please refresh the data.";
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    return "• System Insight: Unable to connect to the Intelligence Engine. Please verify your API configuration and ensure your project billing is active.";
+  }
 };
