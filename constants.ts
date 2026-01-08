@@ -1,4 +1,4 @@
-import { KPIData, Transaction, TrafficSource, RevenueDataPoint, User } from './types';
+import { KPIData, Transaction, TrafficSource, RevenueDataPoint, User } from './types.ts';
 
 export const KPI_STATS: KPIData[] = [
   {

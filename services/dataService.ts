@@ -1,5 +1,5 @@
-import { KPIData, RevenueDataPoint } from '../types';
-import { KPI_STATS } from '../constants';
+import { KPIData, RevenueDataPoint } from '../types.ts';
+import { KPI_STATS } from '../constants.ts';
 
 export const getStatsForRange = (range: string): KPIData[] => {
   let multiplier = 1;
@@ -18,15 +18,12 @@ export const getStatsForRange = (range: string): KPIData[] => {
       : stat.value;
     
     let newValue: string | number = baseValue * multiplier;
-    
-    // Add some random variance so it's not a perfect multiplier
     const variance = 0.9 + Math.random() * 0.2;
     newValue = newValue * variance;
     
     if (stat.label.includes('Revenue')) {
       newValue = `$${Math.floor(newValue).toLocaleString()}`;
     } else if (stat.label.includes('Rate')) {
-      // Rates shouldn't scale with time the same way as volume
       newValue = `${(baseValue * (0.85 + Math.random() * 0.3)).toFixed(1)}%`;
     } else {
       newValue = Math.floor(newValue).toLocaleString();
@@ -57,7 +54,6 @@ export const getChartDataForRange = (range: string): RevenueDataPoint[] => {
   }
 
   if (range === 'Last 30 Days' || range === 'This Month') {
-    // Return daily data for 30 days
     return Array.from({ length: 15 }, (_, i) => ({
       month: `Day ${i * 2 + 1}`,
       revenue: Math.floor(Math.random() * 15000) + 25000
@@ -71,7 +67,6 @@ export const getChartDataForRange = (range: string): RevenueDataPoint[] => {
     }));
   }
 
-  // Default: Monthly view (Jan - Dec)
   return [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'

@@ -1,4 +1,4 @@
-import { KPI_STATS, REVENUE_CHART_DATA } from "../constants";
+import { KPI_STATS, REVENUE_CHART_DATA } from "../constants.ts";
 
 /**
  * Simulates an AI analysis of dashboard data locally.

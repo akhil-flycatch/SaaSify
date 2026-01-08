@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import DashboardView from './components/DashboardView';
-import AnalyticsView from './components/AnalyticsView';
-import UsersView from './components/UsersView';
-import ReportsView from './components/ReportsView';
-import BillingView from './components/BillingView';
-import SettingsView from './components/SettingsView';
-import LoginView from './components/LoginView';
+import Sidebar from './components/Sidebar.tsx';
+import Header from './components/Header.tsx';
+import DashboardView from './components/DashboardView.tsx';
+import AnalyticsView from './components/AnalyticsView.tsx';
+import UsersView from './components/UsersView.tsx';
+import ReportsView from './components/ReportsView.tsx';
+import BillingView from './components/BillingView.tsx';
+import SettingsView from './components/SettingsView.tsx';
+import LoginView from './components/LoginView.tsx';
 
 export type ViewType = 'dashboard' | 'analytics' | 'users' | 'reports' | 'billing' | 'settings';
 

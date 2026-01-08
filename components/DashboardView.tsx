@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import KPICard from './KPICard';
-import RevenueChart from './RevenueChart';
-import TrafficSources from './TrafficSources';
-import RecentTransactions from './RecentTransactions';
-import { generateDashboardInsights } from '../services/geminiService';
-import { getStatsForRange, getChartDataForRange } from '../services/dataService';
+import KPICard from './KPICard.tsx';
+import RevenueChart from './RevenueChart.tsx';
+import TrafficSources from './TrafficSources.tsx';
+import RecentTransactions from './RecentTransactions.tsx';
+import { generateDashboardInsights } from '../services/geminiService.ts';
+import { getStatsForRange, getChartDataForRange } from '../services/dataService.ts';
 
 interface DashboardViewProps {
   dateRange: string;
@@ -50,7 +50,6 @@ const DashboardView: React.FC<DashboardViewProps> = ({ dateRange }) => {
   const handleGenerateInsights = async () => {
     setIsGenerating(true);
     setInsights(null);
-    // Now calls the local mock service
     const result = await generateDashboardInsights();
     setInsights(result);
     setIsGenerating(false);
@@ -60,7 +59,7 @@ const DashboardView: React.FC<DashboardViewProps> = ({ dateRange }) => {
     <div className={`p-6 transition-all duration-300 ${isLoading ? 'opacity-30 translate-y-2' : 'opacity-100 translate-y-0'}`}>
       <div className="max-w-[1600px] mx-auto space-y-6">
         
-        {/* AI Insights Bar - UI preserved but powered by local logic */}
+        {/* Local Intelligence Engine Bar */}
         <div className="relative overflow-hidden p-6 rounded-2xl bg-gradient-to-r from-primary/20 to-purple-500/10 border border-white/10 group transition-all">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewType } from '../App';
+import { ViewType } from '../App.tsx';
 
 const NavItem: React.FC<{ 
   icon: string, 
@@ -39,7 +39,6 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ activeView, onActiveViewChange, onLogout, isOpen, onClose }) => {
   return (
     <>
-      {/* Backdrop for mobile */}
       <div 
         className={`fixed inset-0 bg-background-dark/80 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={onClose}
@@ -48,7 +47,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onActiveViewChange, onLog
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 flex flex-col border-r border-border-dark bg-card-dark h-full shrink-0 transition-transform duration-300 ease-in-out lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full p-4 justify-between">
           <div className="flex flex-col gap-8">
-            {/* Branding & Close Button */}
             <div className="flex items-center justify-between px-2 pt-2">
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => { onActiveViewChange('dashboard'); onClose(); }}>
                 <div className="bg-primary/10 p-2 rounded-lg">
@@ -69,52 +67,18 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onActiveViewChange, onLog
               </button>
             </div>
 
-            {/* Navigation */}
             <nav className="flex flex-col gap-1.5">
               <p className="px-3 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Main Menu</p>
-              <NavItem 
-                icon="dashboard" 
-                label="Dashboard" 
-                isActive={activeView === 'dashboard'} 
-                onClick={() => onActiveViewChange('dashboard')} 
-              />
-              <NavItem 
-                icon="analytics" 
-                label="Analytics" 
-                isActive={activeView === 'analytics'} 
-                onClick={() => onActiveViewChange('analytics')} 
-              />
-              <NavItem 
-                icon="group" 
-                label="Users" 
-                badge="NEW" 
-                isActive={activeView === 'users'} 
-                onClick={() => onActiveViewChange('users')} 
-              />
-              <NavItem 
-                icon="description" 
-                label="Reports" 
-                isActive={activeView === 'reports'} 
-                onClick={() => onActiveViewChange('reports')} 
-              />
-              <NavItem 
-                icon="account_balance_wallet" 
-                label="Billing" 
-                isActive={activeView === 'billing'} 
-                onClick={() => onActiveViewChange('billing')} 
-              />
+              <NavItem icon="dashboard" label="Dashboard" isActive={activeView === 'dashboard'} onClick={() => onActiveViewChange('dashboard')} />
+              <NavItem icon="analytics" label="Analytics" isActive={activeView === 'analytics'} onClick={() => onActiveViewChange('analytics')} />
+              <NavItem icon="group" label="Users" badge="NEW" isActive={activeView === 'users'} onClick={() => onActiveViewChange('users')} />
+              <NavItem icon="description" label="Reports" isActive={activeView === 'reports'} onClick={() => onActiveViewChange('reports')} />
+              <NavItem icon="account_balance_wallet" label="Billing" isActive={activeView === 'billing'} onClick={() => onActiveViewChange('billing')} />
             </nav>
           </div>
 
-          {/* Footer / User */}
           <div className="flex flex-col gap-1 border-t border-border-dark pt-4">
-            <NavItem 
-              icon="settings" 
-              label="Settings" 
-              isActive={activeView === 'settings'} 
-              onClick={() => onActiveViewChange('settings')} 
-            />
-            
+            <NavItem icon="settings" label="Settings" isActive={activeView === 'settings'} onClick={() => onActiveViewChange('settings')} />
             <div className="mt-2 flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-colors">
               <div 
                 className="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 border-2 border-gray-700 shadow-sm"
@@ -124,11 +88,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onActiveViewChange, onLog
                 <p className="text-white text-sm font-bold truncate">Jane Doe</p>
                 <p className="text-text-secondary text-xs truncate">jane@saasify.com</p>
               </div>
-              <button 
-                onClick={onLogout}
-                className="ml-auto text-slate-400 hover:text-red-500 transition-colors p-1"
-                title="Logout"
-              >
+              <button onClick={onLogout} className="ml-auto text-slate-400 hover:text-red-500 transition-colors p-1" title="Logout">
                 <span className="material-symbols-outlined text-[20px]">logout</span>
               </button>
             </div>

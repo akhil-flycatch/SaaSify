@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ViewType } from '../App';
-import { MOCK_NOTIFICATIONS } from '../constants';
-import DatePicker from './DatePicker';
+import { ViewType } from '../App.tsx';
+import { MOCK_NOTIFICATIONS } from '../constants.ts';
+import DatePicker from './DatePicker.tsx';
 
 interface HeaderProps {
   activeView: ViewType;
@@ -74,10 +74,8 @@ const Header: React.FC<HeaderProps> = ({ activeView, dateRange, onDateRangeChang
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-3">
-          {/* Date Picker Component */}
           <DatePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
 
-          {/* Notifications */}
           <div className="relative" ref={notificationRef}>
             <button 
               onClick={() => setShowNotifications(!showNotifications)}

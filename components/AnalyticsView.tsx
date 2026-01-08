@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
   PieChart, Pie, Cell, LineChart, Line, Legend
 } from 'recharts';
-import { getAnalyticsDataForRange } from '../services/dataService';
+import { getAnalyticsDataForRange } from '../services/dataService.ts';
 
 const ACQUISITION_DATA = [
   { name: 'Search', value: 400, color: '#2b6cee' },
@@ -69,7 +69,6 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({ dateRange }) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* User Growth Chart */}
           <div className="bg-card-dark p-6 rounded-xl border border-border-dark">
             <h3 className="text-lg font-bold mb-6">User Activity Profile</h3>
             <div className="h-[350px]">
@@ -90,7 +89,6 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({ dateRange }) => {
             </div>
           </div>
 
-          {/* Acquisition Chart */}
           <div className="bg-card-dark p-6 rounded-xl border border-border-dark">
             <h3 className="text-lg font-bold mb-6">Acquisition Channels</h3>
             <div className="h-[350px] flex items-center">
@@ -120,7 +118,6 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({ dateRange }) => {
           </div>
         </div>
 
-        {/* Real-time Performance Line Chart */}
         <div className="bg-card-dark p-6 rounded-xl border border-border-dark">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-bold">Network Latency Simulation ({dateRange})</h3>
