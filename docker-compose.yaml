@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "80:80"
+      - "5768:80"
     environment:
       - NODE_ENV=production
     restart: always
